@@ -27,18 +27,7 @@ puts "*****************************************************"
 puts "* Sinteza zavrsena! *"
 puts "*****************************************************"
 
-# KORAK#4: Pokretanje procesa implementacije i generisanja konfiguracionog fajla
-#set_property STEPS.WRITE_BITSTREAM.TCL.PRE [pwd]\/pre_write_bitstream.tcl [get_runs impl_1]
-#launch_runs impl_1 -to_step write_bitstream
-#wait_on_run impl_1
-#puts "*******************************************************"
-#puts "* Implementacija zavrsena! *"
-#puts "*******************************************************"
-
-# KORAK#5: Kopiranje konfiguracionog fajla u release folder
-#file copy -force ..\/..\/result\/VGA\/pkg_vga.runs\/impl_1\/VGA_IP_V1_0.bit ..\/..\/release\/VGA\/VGA.bit 
-
-# KORAK#6: Pakovanje Jezgra
+# KORAK#4: Pakovanje Jezgra
 update_compile_order -fileset sources_1
 ipx::package_project -root_dir ..\/..\/ -vendor xilinx.com -library user -taxonomy /UserIP -force
 

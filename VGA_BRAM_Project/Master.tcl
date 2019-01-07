@@ -16,7 +16,7 @@ set ip_repo_path [getScriptDirectory]
 source $ip_repo_path\/VGA_IP\/src\/script\/VGA.tcl
 
 # PACKAGE DESKEW IP
-source $ip_repo_path\/myLED_IP\/src\/script\/myLED.tcl
+source $ip_repo_path\/myLed_IP\/src\/script\/myLed.tcl
 
 # PACKAGE DESKEW IP
 source $ip_repo_path\/Top\/Top.tcl

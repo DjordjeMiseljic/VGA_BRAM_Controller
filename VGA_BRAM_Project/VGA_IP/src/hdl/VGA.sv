@@ -146,11 +146,11 @@ module VGA# ()
 		bram_en = 1'b1;
 		if ((h_counter_reg < h_resolution) && (v_counter_reg < v_resolution))
 		begin
-			bram_addr = ((v_counter_reg * h_resolution) + h_counter_reg) * 2;    
+			bram_addr = ((v_counter_reg * h_resolution) + h_counter_reg) * 4;    
 		end
 		else
 		begin
-			bram_addr = ((h_resolution * v_resolution)) * 2;         
+			bram_addr = ((h_resolution * v_resolution)) * 4;         
 		end
 	end
 

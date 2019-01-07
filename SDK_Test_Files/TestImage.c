@@ -53,28 +53,28 @@
 #include "xil_io.h"
 #include "xbasic_types.h"
 #include "sleep.h"
-#include "Image.h"
+#include "test.h"
 
 int main()
 {
 	int i;
     init_platform();
 
-    print("Hello VGA\n\r");
+    print("Hello World\n\r");
     Xil_DCacheDisable();
     Xil_ICacheDisable();
 
     //TESTING LEDS
-    Xil_Out32(XPAR_MYLED_IP_0_BASEADDR, 15);
+    Xil_Out32(XPAR_MYLED_0_BASEADDR, 15);
     usleep(1000000);
-    Xil_Out32(XPAR_MYLED_IP_0_BASEADDR, 0);
+    Xil_Out32(XPAR_MYLED_0_BASEADDR, 0);
 
 
 
     //TESTING VGA
     for(i = 0; i<=36864; i++)
     {
-		Xil_Out32(XPAR_AXI_GPIO_0_BASEADDR + 8, i*2);
+		Xil_Out32(XPAR_AXI_GPIO_0_BASEADDR + 8, i*4);
 		Xil_Out32(XPAR_AXI_GPIO_0_BASEADDR, image[i]);
     }
 
