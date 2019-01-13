@@ -53,7 +53,7 @@
 #include "xil_io.h"
 #include "xbasic_types.h"
 #include "sleep.h"
-#include "test.h"
+#include "lena.h"
 
 int main()
 {
@@ -75,7 +75,7 @@ int main()
     for(i = 0; i<=36864; i++)
     {
 		Xil_Out32(XPAR_AXI_GPIO_0_BASEADDR + 8, i*4);
-		Xil_Out32(XPAR_AXI_GPIO_0_BASEADDR, image[i]);
+		Xil_Out32(XPAR_AXI_GPIO_0_BASEADDR, lena[i]);
     }
 
 	while(1)
