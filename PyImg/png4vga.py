@@ -7,7 +7,7 @@ def resize(file_id, resolution):
     img = img.resize(resolution, Image.ANTIALIAS)
     dot = file_id.find(".")
     ext = file_id[dot+1:]
-    img.save(file_id[:-dot] + "_resized." + ext, ext)
+    img.save(file_id[:-(len(ext)+1)] + "_resized." + ext, ext)
     return img
 
 def convert(img):
@@ -28,8 +28,11 @@ def tohex(rgb888):
 def save_to_file(img_hex, file_id):
     "print list to file"
     dot = file_id.find(".")
-    fid = open((file_id[:-dot]+".h"), 'w')
-    fid.write("unsigned int image[] = \n{\n")
+    ext = file_id[dot+1:]
+    fid = open((file_id[:-(len(ext)+1)]+".h"), 'w')
+    fid.write("unsigned int ")
+    fid.write(file_id[:-(len(ext)+1)])
+    fid.write("[] = \n{\n")
     for i, value in enumerate(img_hex):
         fid.write("0x")
         fid.write(format(value, '04X'))
@@ -38,13 +41,23 @@ def save_to_file(img_hex, file_id):
             fid.write("\n")
     fid.write("0x0000")
     fid.write(" };")
+    print "Image %s sucessfully converted to %s" % (file_id, (file_id[:-(len(ext)+1)]+".h"))
 
+#USER INTERFACE
+FID = raw_input('Input name of image you want to convert (eg. test.png): ')
+TMP = raw_input('Input x axis resolution: ')
+try:
+    X = int(TMP)
+except ValueError:
+    print "Invalid number"
+TMP = raw_input('Input y axis resolution: ')
+try:
+    Y = int(TMP)
+except ValueError:
+    print "Invalid number"
 
-#TEST PROGRAM
-
-FID = "test.png"
-RES = (256, 144)
-RES0 = resize(FID, RES)
-RES1 = convert(RES0)
-RES2 = tohex(RES1)
-save_to_file(RES2, FID)
+RES = (X, Y)
+IMG = resize(FID, RES)
+IMG1 = convert(IMG)
+IMG2 = tohex(IMG1)
+save_to_file(IMG2, FID)
