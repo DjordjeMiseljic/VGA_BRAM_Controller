@@ -41,20 +41,20 @@ def save_to_file(img_hex, file_id):
             fid.write("\n")
     fid.write("0x0000")
     fid.write(" };")
-    print "Image %s sucessfully converted to %s" % (file_id, (file_id[:-(len(ext)+1)]+".h"))
+    print ("Image %s sucessfully converted to %s" % (file_id, (file_id[:-(len(ext)+1)]+".h")))
 
 #USER INTERFACE
-FID = raw_input('Input name of image you want to convert (eg. test.png): ')
-TMP = raw_input('Input x axis resolution: ')
+FID = input('Input name of image you want to convert (eg. test.png): ')
+TMP = input('Input x axis resolution: ')
 try:
     X = int(TMP)
 except ValueError:
-    print "Invalid number"
-TMP = raw_input('Input y axis resolution: ')
+    print ("Invalid number")
+TMP = input('Input y axis resolution: ')
 try:
     Y = int(TMP)
 except ValueError:
-    print "Invalid number"
+    print ("Invalid number")
 
 RES = (X, Y)
 IMG = resize(FID, RES)
